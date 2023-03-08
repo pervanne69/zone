@@ -1,7 +1,19 @@
+
+const wrapper = document.querySelector('.wrapper')
+
+const body = document.querySelector('body')
+
 const animationItems = document.querySelectorAll('._animation-items')
 
 const animationItemsSecond = document.querySelectorAll('._animation-items-second')
 
+const headerBurger = document.querySelector('.header__burger')
+
+const burgerContentItems = document.querySelectorAll('.burger__content ul li')
+
+const burgerContent = document.querySelector('.burger__content')
+
+const burgerCloseBtn = document.querySelector('.burger__label')
 
 if (animationItems.length > 0) {
     window.addEventListener('wheel', animationOnScroll)
@@ -53,5 +65,29 @@ if (animationItems.length > 0) {
         return {top: rect.top + scrollTop, left: rect.left + scrollLeft}
     }
 }
+
+
+headerBurgerHandler = function() {
+    headerBurger.classList.add('header__burger_passive')
+    burgerContent.classList.add('burger__content_active')
+    wrapper.classList.add('overflow-hidden')
+    body.classList.add('overflow-hidden')
+}
+
+burgerCloseBtnHandler = function() {
+    headerBurger.classList.remove('header__burger_passive')
+    burgerContent.classList.remove('burger__content_active')
+    wrapper.classList.remove('overflow-hidden')
+    body.classList.remove('overflow-hidden')
+}
+
+
+burgerContentItems.forEach(item => {
+    item.addEventListener('click', burgerCloseBtnHandler)
+})
+
+headerBurger.addEventListener('click', headerBurgerHandler)
+
+burgerCloseBtn.addEventListener('click', burgerCloseBtnHandler)
 
 setTimeout(animationOnScroll, 200)

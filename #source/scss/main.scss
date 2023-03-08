@@ -16,6 +16,8 @@ body {
 .wrapper {
   display: flex;
   flex-direction: column;
+  z-index: 900;
+  position: relative;
 }
 
 .main {
@@ -36,14 +38,35 @@ body {
 
 
 header.header {
-  flex-grow: 0;
-  flex-shrink: 1;
   .header__body {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 48px 0;
+    @media only screen and (max-width: 800px) {
+      justify-content: space-around;
+    }
+    ul.tips {
+      display: flex;
+      gap: 60px;
+      align-items: center;
+
+      li.tips__tip {
+        font-size: 14px;
+        line-height: 18px;
+        color: #F9FAFB;
+        cursor: pointer;
+        transition: all 0.3s linear;
+        &:hover {
+          text-shadow: 0 0 20px #FFFFFF;
+        }
+        a {
+          display: block;
+          color: #F9FAFB;
+        }
+      }
+    }
     .header__left {
       position: relative;
       .header__title {
@@ -67,24 +90,8 @@ header.header {
       }
     }
     .header__right {
-      ul.tips {
-        display: flex;
-        gap: 60px;
-        align-items: center;
-        li.tips__tip {
-          font-size: 14px;
-          line-height: 18px;
-          color: #F9FAFB;
-          cursor: pointer;
-          transition: all 0.3s linear;
-          &:hover {
-            text-shadow: 0 0 20px #FFFFFF;
-          }
-          a {
-            display: block;
-            color: #F9FAFB;
-          }
-        }
+      @media only screen and (max-width: 800px) {
+        display: none
       }
     }
   }
@@ -92,10 +99,16 @@ header.header {
 
 section.virtual-reality {
   margin-bottom: 120px;
+  @media only screen and (max-width: 960px) {
+    margin-bottom: 80px;
+  }
   .virtual-reality__body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media only screen and (max-width: 700px) {
+      flex-direction: column;
+    }
     .virtual-reality__business-solution {
       display: flex;
       flex-direction: column;
@@ -110,6 +123,11 @@ section.virtual-reality {
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 0 4px 4px rgba(0, 0, 0, 0.07);
+
+        @media only screen and (max-width: 960px) {
+          font-size: 32px;
+          line-height: 40px;
+        }
       }
       .business-solution__text {
         font-size: 15px;
@@ -118,6 +136,10 @@ section.virtual-reality {
         opacity: 0.8;
         text-shadow: 0 4px 4px rgba(0, 0, 0, 0.07);
         max-width: 554px;
+        @media only screen and (max-width: 960px) {
+          font-size: 10px;
+          line-height: 20px;
+        }
       }
       .business-solution__buttons {
         display: flex;
@@ -155,6 +177,13 @@ section.virtual-reality {
       height: 680px;
       flex-shrink: 1;
       flex-grow: 0;
+      @media only screen and (max-width: 960px) {
+        margin-top: -30px;
+      }
+      @media only screen and (max-width: 560px) {
+        width: auto;
+        height: auto;
+      }
       img {
         position: absolute;
         z-index: 20;
@@ -701,4 +730,85 @@ footer.footer._passive._animation-items {
   -webkit-transform: translate(0, 0) !important;
   -ms-transform: translate(0, 0) !important;
   transform: translate(0, 0) !important;
+}
+
+.header__burger {
+  display: none;
+  @media only screen and (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+    div {
+      width: 33px;
+      height: 3.84px;
+      background: #FFFFFF;
+      border-radius: 10px;
+    }
+    &::before {
+      content: '';
+      display: block;
+      width: 33px;
+      height: 3.84px;
+      background: #FFFFFF;
+      border-radius: 10px;
+    }
+    &::after {
+      content: '';
+      display: block;
+      width: 33px;
+      height: 3.84px;
+      background: #FFFFFF;
+      border-radius: 10px;
+    }
+  }
+}
+
+.header__burger_passive {
+  display: none;
+}
+
+.burger__content {
+  display: none;
+}
+
+.burger__content_active {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #171836;
+  display: flex;
+  z-index: 1000;
+  padding: 30px 5px;
+  flex-direction: row;
+  justify-content: space-between;
+  ul.burger__tips {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    flex-direction: column;
+    flex-basis: 100%;
+    li.tips__tip {
+      font-size: 20px;
+      line-height: 18px;
+      color: #F9FAFB;
+      cursor: pointer;
+      transition: all 0.3s linear;
+      &:hover {
+        text-shadow: 0 0 20px #FFFFFF;
+      }
+      a {
+        display: block;
+        color: #F9FAFB;
+      }
+    }
+  }
+}
+
+
+.overflow-hidden {
+  overflow: hidden;
 }
